@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+ 
+ <head>
+  
+  <meta charset="UTF-8" />
+ 
+   <title>Simple Counter</title>
+ 
+   <script src="js/react.js"></script>
+  
+   <script src="js/react-dom.js"></script>
+  
+   <script src="js/babel.min.js"></script>
+
+ </head>
+ 
+ <body>
+  
+  <div id="counter"></div>
+ 
+   <script type="text/babel">
+	    class Clock extends React.Component {
+        constructor(value)
+        {
+          super(value);
+          this.state = {counter: 0};
+        }
+
+        componentDidMount() {
+          this.timerID = setInterval(
+            () => this.increaseCount(),
+            5000
+          );
+        }
+
+        componentWillUnmount() {
+          clearInterval(this.timerID);
+        }
+
+        increaseCount() {
+          this.setState((prevState, value) => ({
+            counter: prevState.counter + 1
+          }));  
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Counter Increment!</h1>
+              <h2>Counter Value is {this.state.counter}.
+              </h2>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <Clock />,
+        document.getElementById('counter')
+      );
+
+    </script>
+  
+  </body>
+
+</html>
